@@ -13,8 +13,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _vudu = require('vudu');
 
-var _vudu2 = _interopRequireDefault(_vudu);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23,28 +21,235 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var styles = (0, _vudu2.default)({
-  hello: {
-    color: 'pink'
-  }
-});
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function loadImage(src) {
+  return new Promise(function (resolve, reject) {
+    var image = new Image();
+    image.src = src;
+    image.onload = function () {
+      resolve(image.height * window.innerWidth / image.width);
+    };
+  });
+}
+
+var Hero = function Hero(props) {
+  var _container;
+
+  var name = 'slowPan';
+  var styles = (0, _vudu.v)({
+    container: (_container = {
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundImage: 'url(' + props.image + ')',
+      backgroundRepeat: 'repeat-y',
+      backgroundSize: '100% auto',
+      animationName: name,
+      animationDuration: '90s',
+      animationIterationCount: 'infinite',
+      animationTimingFunction: 'linear'
+    }, _defineProperty(_container, '@keyframes ' + name, {
+      '0%': {
+        backgroundPosition: '0 0'
+      },
+      '100%': {
+        backgroundPosition: '0 -' + props.imageHeight + 'px'
+      }
+    }), _defineProperty(_container, 'img', {
+      width: '20rem'
+    }), _container),
+    downArrow: {
+      left: '50%',
+      opacity: '.5',
+      transform: 'translateX(-50%)',
+      '@composes': [_vudu.atomics.absolute, _vudu.atomics.bottom0, _vudu.atomics.pb4]
+    }
+  });
+  return _react2.default.createElement(
+    'div',
+    { className: styles.container },
+    _react2.default.createElement(
+      'h1',
+      null,
+      _react2.default.createElement('img', { src: 'https://img42.com/iZrzL+' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: styles.downArrow },
+      _react2.default.createElement(
+        'svg',
+        { xmlns: 'http://www.w3.org/2000/svg', width: '48', viewBox: '0 0 64 25' },
+        _react2.default.createElement(
+          'g',
+          _defineProperty({ fill: 'none' }, 'fill', '#fff'),
+          _react2.default.createElement('path', { d: 'M32 23.6L31.9 23.7 30.8 22.9 2 4.4 0.9 3.6 2.4 1.3 3.5 2.1 31.9 20.4 60.4 2 61.6 1.3 63.1 3.6 61.9 4.4 33.2 22.9 32 23.7 32 23.6Z' })
+        )
+      )
+    )
+  );
+};
+
+var Writeup = function Writeup() {
+  var styles = (0, _vudu.v)({
+    writeup: {
+      'p': {
+        '@composes': [_vudu.atomics.h1, _vudu.atomics.m0, _vudu.atomics.py3]
+      },
+      'a': {
+        '@composes': [_vudu.atomics.black, _vudu.atomics.noUnderline]
+      },
+      'span': {
+        borderBottom: '1px solid black',
+        lineHeight: '1.1',
+        top: '-4px',
+        '@composes': [_vudu.atomics.inlineBlock, _vudu.atomics.relative]
+      },
+      '@composes': [_vudu.atomics.pb4]
+    },
+    padWriteup: {
+      '@composes': [_vudu.atomics.p4]
+    }
+  });
+  return _react2.default.createElement(
+    'div',
+    { className: styles.writeup },
+    _react2.default.createElement(
+      'div',
+      { className: styles.padWriteup },
+      _react2.default.createElement(
+        'p',
+        null,
+        'Sanctu Compu makes digital products.'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'New website coming soon.'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        _react2.default.createElement(
+          'span',
+          null,
+          'Selected Collaborators'
+        ),
+        _react2.default.createElement('br', null),
+        'Gin Lane, PlayLab, Labour NY, Human NYC'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        _react2.default.createElement(
+          'span',
+          null,
+          'Selected Clients'
+        ),
+        _react2.default.createElement('br', null),
+        'Dig Inn, Hermann Miller and Dame Products'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        _react2.default.createElement(
+          'span',
+          null,
+          'Technology Stack'
+        ),
+        _react2.default.createElement('br', null),
+        'React, React Native, Ember, Phoenix, Elixir, Ruby, Rails, Sass, Greensock and Aframe, among others'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        _react2.default.createElement(
+          'a',
+          { href: 'mailto:hello@sanctuary.computer' },
+          'hello@sanctuary.computer'
+        )
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        _react2.default.createElement(
+          'a',
+          { href: 'https://www.facebook.com/sanctucompu/', target: '_blank' },
+          'Facebook'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'a',
+          { href: 'https://twitter.com/sanctucompu', target: '_blank' },
+          'Twitter'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'a',
+          { href: 'https://www.instagram.com/sanctucompu/', target: '_blank' },
+          'Instagram'
+        )
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        '110 Bowery St, Fourth Floor',
+        _react2.default.createElement('br', null),
+        'New York City 10013'
+      )
+    ),
+    _react2.default.createElement(
+      'svg',
+      { xmlns: 'http://www.w3.org/2000/svg', width: '100%', viewBox: '0 0 1280 172' },
+      _react2.default.createElement(
+        'g',
+        { fill: 'none', stroke: '#000' },
+        _react2.default.createElement('path', { d: 'M640.7 170.2L0.5 1.6 0 1.5 0.3 0.5 0.7 0.6 641 169.3 1281.3 0.6 1281.7 0.5 1282 1.5 1281.5 1.6 641.3 170.2 641.3 170.4 641 170.3 640.7 170.4 640.7 170.2Z' })
+      )
+    )
+  );
+};
 
 var Hello = function (_Component) {
   _inherits(Hello, _Component);
 
-  function Hello() {
+  function Hello(props) {
     _classCallCheck(this, Hello);
 
-    return _possibleConstructorReturn(this, (Hello.__proto__ || Object.getPrototypeOf(Hello)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Hello.__proto__ || Object.getPrototypeOf(Hello)).call(this, props));
+
+    _this.image = 'https://img42.com/qfSiP+';
+    _this.state = {
+      imageHeight: null
+    };
+    return _this;
   }
 
   _createClass(Hello, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      loadImage(this.image).then(function (response) {
+        _this2.setState({
+          imageHeight: response
+        });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var styles = (0, _vudu.v)({
+        siteWrapper: {
+          fontFamily: '"AustinNewsLight", "Helvetica Neue", Helvetica'
+        }
+      });
       return _react2.default.createElement(
         'div',
-        { className: styles.hello },
-        'Hello From React!'
+        { className: styles.siteWrapper },
+        _react2.default.createElement(Hero, { image: this.image, imageHeight: this.state.imageHeight }),
+        _react2.default.createElement(Writeup, null)
       );
     }
   }]);
@@ -57,23 +262,36 @@ exports.default = Hello;
 },{"react":173,"vudu":174}],2:[function(require,module,exports){
 'use strict';
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _Hello = require('./components/Hello');
 
 var _Hello2 = _interopRequireDefault(_Hello);
 
+var _vudu = require('vudu');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _vudu.v)({
+  AustinNewsLight: {
+    '@font-face': {
+      fontFamily: 'AustinNewsLight',
+      sources: [{ path: '/static/fonts/AustinNewsDeck-Light.eot', format: 'embedded-opentype' }, { path: '/static/fonts/AustinNewsDeck-Light.woff2', format: 'woff2' }, { path: '/static/fonts/AustinNewsDeck-Light.woff', format: 'woff' }, { path: '/static/fonts/AustinNewsDeck-Light.ttf', format: 'truetype' }],
+      fontWeight: 'normal',
+      fontStyle: 'normal'
+    }
+  }
+});
 
 _reactDom2.default.render(_react2.default.createElement(_Hello2.default, null), document.getElementById('app'));
 
-},{"./components/Hello":1,"react":173,"react-dom":30}],3:[function(require,module,exports){
+},{"./components/Hello":1,"react":173,"react-dom":30,"vudu":174}],3:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -20831,877 +21049,6 @@ module.exports = validateDOMNesting;
 module.exports = require('./lib/React');
 
 },{"./lib/React":56}],174:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
-};
-
-
-
-
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-
-
-var get = function get(object, property, receiver) {
-  if (object === null) object = Function.prototype;
-  var desc = Object.getOwnPropertyDescriptor(object, property);
-
-  if (desc === undefined) {
-    var parent = Object.getPrototypeOf(object);
-
-    if (parent === null) {
-      return undefined;
-    } else {
-      return get(parent, property, receiver);
-    }
-  } else if ("value" in desc) {
-    return desc.value;
-  } else {
-    var getter = desc.get;
-
-    if (getter === undefined) {
-      return undefined;
-    }
-
-    return getter.call(receiver);
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var set = function set(object, property, value, receiver) {
-  var desc = Object.getOwnPropertyDescriptor(object, property);
-
-  if (desc === undefined) {
-    var parent = Object.getPrototypeOf(object);
-
-    if (parent !== null) {
-      set(parent, property, value, receiver);
-    }
-  } else if ("value" in desc && desc.writable) {
-    desc.value = value;
-  } else {
-    var setter = desc.set;
-
-    if (setter !== undefined) {
-      setter.call(receiver, value);
-    }
-  }
-
-  return value;
-};
-
-var camelToHyphen = function camelToHyphen(c) {
-  return c.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-};
-
-var guid = function guid() {
-  return Math.random().toString(26).substring(2, 10) + Math.random().toString(26).substring(2, 10);
-};
-
-var deepEqual = function deepEqual(a, b) {
-  var isAobj = (typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object';
-  var isBobj = (typeof b === 'undefined' ? 'undefined' : _typeof(b)) === 'object';
-  var isABobjs = isAobj && isBobj;
-  var out = a === b;
-
-  function checkX(x) {
-    var ix = void 0,
-        res = void 0;
-    for (ix in x) {
-      if (x.hasOwnProperty(ix)) {
-        res = deepEqual(a[ix], b[ix]);
-      }
-      if (!res) {
-        break;
-      }
-    }
-    return res;
-  }
-  if (a && b && isABobjs && !out) {
-    out = checkX(a) && checkX(b);
-  }
-  return out;
-};
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var prefixProps = createCommonjsModule(function (module, exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = { "Webkit": { "transform": true, "transformOrigin": true, "transformOriginX": true, "transformOriginY": true, "backfaceVisibility": true, "perspective": true, "perspectiveOrigin": true, "transformStyle": true, "transformOriginZ": true, "animation": true, "animationDelay": true, "animationDirection": true, "animationFillMode": true, "animationDuration": true, "animationIterationCount": true, "animationName": true, "animationPlayState": true, "animationTimingFunction": true, "appearance": true, "userSelect": true, "fontKerning": true, "textEmphasisPosition": true, "textEmphasis": true, "textEmphasisStyle": true, "textEmphasisColor": true, "boxDecorationBreak": true, "clipPath": true, "maskImage": true, "maskMode": true, "maskRepeat": true, "maskPosition": true, "maskClip": true, "maskOrigin": true, "maskSize": true, "maskComposite": true, "mask": true, "maskBorderSource": true, "maskBorderMode": true, "maskBorderSlice": true, "maskBorderWidth": true, "maskBorderOutset": true, "maskBorderRepeat": true, "maskBorder": true, "maskType": true, "textDecorationStyle": true, "textDecorationSkip": true, "textDecorationLine": true, "textDecorationColor": true, "filter": true, "fontFeatureSettings": true, "breakAfter": true, "breakBefore": true, "breakInside": true, "columnCount": true, "columnFill": true, "columnGap": true, "columnRule": true, "columnRuleColor": true, "columnRuleStyle": true, "columnRuleWidth": true, "columns": true, "columnSpan": true, "columnWidth": true, "flex": true, "flexBasis": true, "flexDirection": true, "flexGrow": true, "flexFlow": true, "flexShrink": true, "flexWrap": true, "alignContent": true, "alignItems": true, "alignSelf": true, "justifyContent": true, "order": true, "transition": true, "transitionDelay": true, "transitionDuration": true, "transitionProperty": true, "transitionTimingFunction": true, "backdropFilter": true, "scrollSnapType": true, "scrollSnapPointsX": true, "scrollSnapPointsY": true, "scrollSnapDestination": true, "scrollSnapCoordinate": true, "shapeImageThreshold": true, "shapeImageMargin": true, "shapeImageOutside": true, "hyphens": true, "flowInto": true, "flowFrom": true, "regionFragment": true, "textSizeAdjust": true }, "Moz": { "appearance": true, "userSelect": true, "boxSizing": true, "textAlignLast": true, "textDecorationStyle": true, "textDecorationSkip": true, "textDecorationLine": true, "textDecorationColor": true, "tabSize": true, "hyphens": true, "fontFeatureSettings": true, "breakAfter": true, "breakBefore": true, "breakInside": true, "columnCount": true, "columnFill": true, "columnGap": true, "columnRule": true, "columnRuleColor": true, "columnRuleStyle": true, "columnRuleWidth": true, "columns": true, "columnSpan": true, "columnWidth": true }, "ms": { "flex": true, "flexBasis": false, "flexDirection": true, "flexGrow": false, "flexFlow": true, "flexShrink": false, "flexWrap": true, "alignContent": false, "alignItems": false, "alignSelf": false, "justifyContent": false, "order": false, "transform": true, "transformOrigin": true, "transformOriginX": true, "transformOriginY": true, "userSelect": true, "wrapFlow": true, "wrapThrough": true, "wrapMargin": true, "scrollSnapType": true, "scrollSnapPointsX": true, "scrollSnapPointsY": true, "scrollSnapDestination": true, "scrollSnapCoordinate": true, "touchAction": true, "hyphens": true, "flowInto": true, "flowFrom": true, "breakBefore": true, "breakAfter": true, "breakInside": true, "regionFragment": true, "gridTemplateColumns": true, "gridTemplateRows": true, "gridTemplateAreas": true, "gridTemplate": true, "gridAutoColumns": true, "gridAutoRows": true, "gridAutoFlow": true, "grid": true, "gridRowStart": true, "gridColumnStart": true, "gridRowEnd": true, "gridRow": true, "gridColumn": true, "gridColumnEnd": true, "gridColumnGap": true, "gridRowGap": true, "gridArea": true, "gridGap": true, "textSizeAdjust": true } };
-module.exports = exports["default"];
-});
-
-var capitalizeString = createCommonjsModule(function (module, exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-// helper to capitalize strings
-
-exports.default = function (str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-module.exports = exports["default"];
-});
-
-var joinPrefixedValue = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-  } else {
-    obj[key] = value;
-  }return obj;
-}
-
-// returns a style object with a single concated prefixed value string
-
-exports.default = function (property, value) {
-  var replacer = arguments.length <= 2 || arguments[2] === undefined ? function (prefix, value) {
-    return prefix + value;
-  } : arguments[2];
-  return _defineProperty({}, property, ['-webkit-', '-moz-', ''].map(function (prefix) {
-    return replacer(prefix, value);
-  }));
-};
-
-module.exports = exports['default'];
-});
-
-var isPrefixedValue = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (value) {
-  if (Array.isArray(value)) value = value.join(',');
-
-  return value.match(/-webkit-|-moz-|-ms-/) !== null;
-};
-
-module.exports = exports['default'];
-});
-
-var calc_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = calc;
-
-var _joinPrefixedValue = joinPrefixedValue;
-
-var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-var _isPrefixedValue = isPrefixedValue;
-
-var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function calc(property, value) {
-  if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('calc(') > -1) {
-    return (0, _joinPrefixedValue2.default)(property, value, function (prefix, value) {
-      return value.replace(/calc\(/g, prefix + 'calc(');
-    });
-  }
-}
-module.exports = exports['default'];
-});
-
-var cursor_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = cursor;
-
-var _joinPrefixedValue = joinPrefixedValue;
-
-var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var values = {
-  'zoom-in': true,
-  'zoom-out': true,
-  grab: true,
-  grabbing: true
-};
-
-function cursor(property, value) {
-  if (property === 'cursor' && values[value]) {
-    return (0, _joinPrefixedValue2.default)(property, value);
-  }
-}
-module.exports = exports['default'];
-});
-
-var flex_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = flex;
-var values = { flex: true, 'inline-flex': true };
-
-function flex(property, value) {
-  if (property === 'display' && values[value]) {
-    return {
-      display: ['-webkit-box', '-moz-box', '-ms-' + value + 'box', '-webkit-' + value, value]
-    };
-  }
-}
-module.exports = exports['default'];
-});
-
-var sizing_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = sizing;
-
-var _joinPrefixedValue = joinPrefixedValue;
-
-var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var properties = {
-  maxHeight: true,
-  maxWidth: true,
-  width: true,
-  height: true,
-  columnWidth: true,
-  minWidth: true,
-  minHeight: true
-};
-var values = {
-  'min-content': true,
-  'max-content': true,
-  'fill-available': true,
-  'fit-content': true,
-  'contain-floats': true
-};
-
-function sizing(property, value) {
-  if (properties[property] && values[value]) {
-    return (0, _joinPrefixedValue2.default)(property, value);
-  }
-}
-module.exports = exports['default'];
-});
-
-var gradient_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = gradient;
-
-var _joinPrefixedValue = joinPrefixedValue;
-
-var _joinPrefixedValue2 = _interopRequireDefault(_joinPrefixedValue);
-
-var _isPrefixedValue = isPrefixedValue;
-
-var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;
-
-function gradient(property, value) {
-  if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.match(values) !== null) {
-    return (0, _joinPrefixedValue2.default)(property, value);
-  }
-}
-module.exports = exports['default'];
-});
-
-var uppercasePattern = /[A-Z]/g;
-var msPattern = /^ms-/;
-
-function hyphenateStyleName(string) {
-    return string.replace(uppercasePattern, '-$&').toLowerCase().replace(msPattern, '-ms-');
-}
-
-var index = hyphenateStyleName;
-
-var transition_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = transition;
-
-var _hyphenateStyleName = index;
-
-var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
-
-var _capitalizeString = capitalizeString;
-
-var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
-
-var _isPrefixedValue = isPrefixedValue;
-
-var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
-
-var _prefixProps = prefixProps;
-
-var _prefixProps2 = _interopRequireDefault(_prefixProps);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-  } else {
-    obj[key] = value;
-  }return obj;
-}
-
-var properties = {
-  transition: true,
-  transitionProperty: true,
-  WebkitTransition: true,
-  WebkitTransitionProperty: true
-};
-
-function transition(property, value) {
-  // also check for already prefixed transitions
-  if (typeof value === 'string' && properties[property]) {
-    var _ref2;
-
-    var outputValue = prefixValue(value);
-    var webkitOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (value) {
-      return value.match(/-moz-|-ms-/) === null;
-    }).join(',');
-
-    // if the property is already prefixed
-    if (property.indexOf('Webkit') > -1) {
-      return _defineProperty({}, property, webkitOutput);
-    }
-
-    return _ref2 = {}, _defineProperty(_ref2, 'Webkit' + (0, _capitalizeString2.default)(property), webkitOutput), _defineProperty(_ref2, property, outputValue), _ref2;
-  }
-}
-
-function prefixValue(value) {
-  if ((0, _isPrefixedValue2.default)(value)) {
-    return value;
-  }
-
-  // only split multi values, not cubic beziers
-  var multipleValues = value.split(/,(?![^()]*(?:\([^()]*\))?\))/g);
-
-  // iterate each single value and check for transitioned properties
-  // that need to be prefixed as well
-  multipleValues.forEach(function (val, index$$1) {
-    multipleValues[index$$1] = Object.keys(_prefixProps2.default).reduce(function (out, prefix) {
-      var dashCasePrefix = '-' + prefix.toLowerCase() + '-';
-
-      Object.keys(_prefixProps2.default[prefix]).forEach(function (prop) {
-        var dashCaseProperty = (0, _hyphenateStyleName2.default)(prop);
-
-        if (val.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== 'order') {
-          // join all prefixes and create a new value
-          out = val.replace(dashCaseProperty, dashCasePrefix + dashCaseProperty) + ',' + out;
-        }
-      });
-      return out;
-    }, val);
-  });
-
-  return multipleValues.join(',');
-}
-module.exports = exports['default'];
-});
-
-var flexboxIE_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = flexboxIE;
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-  } else {
-    obj[key] = value;
-  }return obj;
-}
-
-var alternativeValues = {
-  'space-around': 'distribute',
-  'space-between': 'justify',
-  'flex-start': 'start',
-  'flex-end': 'end'
-};
-var alternativeProps = {
-  alignContent: 'msFlexLinePack',
-  alignSelf: 'msFlexItemAlign',
-  alignItems: 'msFlexAlign',
-  justifyContent: 'msFlexPack',
-  order: 'msFlexOrder',
-  flexGrow: 'msFlexPositive',
-  flexShrink: 'msFlexNegative',
-  flexBasis: 'msPreferredSize'
-};
-
-function flexboxIE(property, value) {
-  if (alternativeProps[property]) {
-    return _defineProperty({}, alternativeProps[property], alternativeValues[value] || value);
-  }
-}
-module.exports = exports['default'];
-});
-
-var flexboxOld_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = flexboxOld;
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-  } else {
-    obj[key] = value;
-  }return obj;
-}
-
-var alternativeValues = {
-  'space-around': 'justify',
-  'space-between': 'justify',
-  'flex-start': 'start',
-  'flex-end': 'end',
-  'wrap-reverse': 'multiple',
-  wrap: 'multiple'
-};
-
-var alternativeProps = {
-  alignItems: 'WebkitBoxAlign',
-  justifyContent: 'WebkitBoxPack',
-  flexWrap: 'WebkitBoxLines'
-};
-
-function flexboxOld(property, value) {
-  if (property === 'flexDirection' && typeof value === 'string') {
-    return {
-      WebkitBoxOrient: value.indexOf('column') > -1 ? 'vertical' : 'horizontal',
-      WebkitBoxDirection: value.indexOf('reverse') > -1 ? 'reverse' : 'normal'
-    };
-  }
-  if (alternativeProps[property]) {
-    return _defineProperty({}, alternativeProps[property], alternativeValues[value] || value);
-  }
-}
-module.exports = exports['default'];
-});
-
-var prefixAll_1 = createCommonjsModule(function (module, exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = prefixAll;
-
-var _prefixProps = prefixProps;
-
-var _prefixProps2 = _interopRequireDefault(_prefixProps);
-
-var _capitalizeString = capitalizeString;
-
-var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
-
-var _calc = calc_1;
-
-var _calc2 = _interopRequireDefault(_calc);
-
-var _cursor = cursor_1;
-
-var _cursor2 = _interopRequireDefault(_cursor);
-
-var _flex = flex_1;
-
-var _flex2 = _interopRequireDefault(_flex);
-
-var _sizing = sizing_1;
-
-var _sizing2 = _interopRequireDefault(_sizing);
-
-var _gradient = gradient_1;
-
-var _gradient2 = _interopRequireDefault(_gradient);
-
-var _transition = transition_1;
-
-var _transition2 = _interopRequireDefault(_transition);
-
-var _flexboxIE = flexboxIE_1;
-
-var _flexboxIE2 = _interopRequireDefault(_flexboxIE);
-
-var _flexboxOld = flexboxOld_1;
-
-var _flexboxOld2 = _interopRequireDefault(_flexboxOld);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-// special flexbox specifications
-
-
-var plugins = [_calc2.default, _cursor2.default, _sizing2.default, _gradient2.default, _transition2.default, _flexboxIE2.default, _flexboxOld2.default, _flex2.default];
-
-/**
- * Returns a prefixed version of the style object using all vendor prefixes
- * @param {Object} styles - Style object that gets prefixed properties added
- * @returns {Object} - Style object with prefixed properties and values
- */
-function prefixAll(styles) {
-  Object.keys(styles).forEach(function (property) {
-    var value = styles[property];
-    if (value instanceof Object && !Array.isArray(value)) {
-      // recurse through nested style objects
-      styles[property] = prefixAll(value);
-    } else {
-      Object.keys(_prefixProps2.default).forEach(function (prefix) {
-        var properties = _prefixProps2.default[prefix];
-        // add prefixes if needed
-        if (properties[property]) {
-          styles[prefix + (0, _capitalizeString2.default)(property)] = value;
-        }
-      });
-    }
-  });
-
-  Object.keys(styles).forEach(function (property) {
-    [].concat(styles[property]).forEach(function (value, index) {
-      // resolve every special plugins
-      plugins.forEach(function (plugin) {
-        return assignStyles(styles, plugin(property, value));
-      });
-    });
-  });
-
-  return styles;
-}
-
-function assignStyles(base) {
-  var extend = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-  Object.keys(extend).forEach(function (property) {
-    var baseValue = base[property];
-    if (Array.isArray(baseValue)) {
-      [].concat(extend[property]).forEach(function (value) {
-        var valueIndex = baseValue.indexOf(value);
-        if (valueIndex > -1) {
-          base[property].splice(valueIndex, 1);
-        }
-        base[property].push(value);
-      });
-    } else {
-      base[property] = extend[property];
-    }
-  });
-}
-module.exports = exports['default'];
-});
-
-var _static = prefixAll_1;
-
-var Cache = function () {
-  function Cache() {
-    classCallCheck(this, Cache);
-
-    this.items = [];
-  }
-
-  createClass(Cache, [{
-    key: "addItem",
-    value: function addItem(item) {
-      this.items.push(item);
-    }
-  }, {
-    key: "clearItems",
-    value: function clearItems() {
-      this.items = [];
-    }
-  }]);
-  return Cache;
-}();
-
-var Sheet = function () {
-  function Sheet() {
-    classCallCheck(this, Sheet);
-
-    this.vStyleSheet = this.create('vStyleSheet');
-  }
-
-  createClass(Sheet, [{
-    key: 'create',
-    value: function create(id) {
-      if (document.getElementById(id)) {
-        return;
-      } else {
-        var style = document.createElement('style');
-        style.appendChild(document.createTextNode(''));
-        style.setAttribute('id', id);
-        document.head.appendChild(style);
-        return style.sheet;
-      }
-    }
-  }, {
-    key: 'reset',
-    value: function reset() {
-      var _this = this;
-
-      this.stylesheet.cssRules.forEach(function (item, index) {
-        _this.stylesheet.deleteRule(index);
-      });
-    }
-  }]);
-  return Sheet;
-}();
-
-var cache = new Cache();
-var sheet = new Sheet();
-
-var vStyleSheet = sheet.vStyleSheet;
-
-
-var prefix = function prefix(prop, vendors) {
-  var flattened = '';
-  vendors.forEach(function (v) {
-    return flattened = flattened.concat(camelToHyphen(prop) + ': ' + v + ';');
-  });
-
-  return flattened;
-};
-
-var buildDeclarations = function buildDeclarations() {
-  var styles = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var declarations = '';
-  Object.keys(styles).forEach(function (s) {
-    if (_typeof(styles[s]) !== 'object') {
-      var needsPrefix = /[A-Z]/.test(s[0]);
-      var cssProperty = needsPrefix ? '-' + camelToHyphen(s) : camelToHyphen(s);
-      var declaration = cssProperty + ': ' + styles[s] + ';';
-      declarations = declarations.concat(declaration);
-    }
-
-    // sometimes a property has an array of values
-    // e.g. display: [-webkit-box, -ms-flexbox, etc.]
-    // this little bit flattens out those values
-    if (Array.isArray(styles[s])) {
-      declarations = declarations.concat(prefix(s, styles[s]));
-    }
-  });
-
-  return declarations;
-};
-
-var buildFontface = function buildFontface() {
-  var styles = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var declarations = '';
-  Object.keys(styles).forEach(function (s) {
-    if (!Array.isArray(styles[s])) {
-      declarations = declarations.concat(camelToHyphen(s) + ': ' + styles[s] + ';');
-    } else {
-      (function () {
-        var sourceDecs = 'src: ';
-        styles[s].forEach(function (source, index) {
-          if (source.format === 'embedded-opentype') {
-            var line = 'url(' + source.path + '?#iefix) format(\'' + source.format + '\'),';
-            sourceDecs = 'src: url(' + source.path + '); ' + sourceDecs;
-            sourceDecs = sourceDecs.concat(line);
-          } else {
-            var comma = index < styles[s].length - 1 ? ',' : '';
-            var _line = 'url(' + source.path + ') format(\'' + source.format + '\')' + comma;
-            sourceDecs = sourceDecs.concat(_line);
-          }
-        });
-        sourceDecs = sourceDecs.concat(';');
-        declarations = declarations.concat(sourceDecs);
-      })();
-    }
-  });
-
-  return declarations;
-};
-
-var buildKeyframes = function buildKeyframes() {
-  var keyframe = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var keyframes = '';
-  Object.keys(keyframe).forEach(function (kf) {
-    var declarations = buildDeclarations(keyframe[kf]);
-    keyframes = keyframes.concat(kf + ' { ' + declarations + ' }\n');
-  });
-
-  return keyframes;
-};
-
-var buildRuleset = function buildRuleset(element, customSheet) {
-  var stylesheet = customSheet ? customSheet : vStyleSheet;
-  var className = guid();
-  var classes = {};
-
-  Object.keys(element).forEach(function (k) {
-    var newClassName = k + '-' + className;
-    var styles = element[k];
-    var prefixed = _static(styles);
-
-    // build base level styles (strings)
-    var declarations = buildDeclarations(prefixed);
-    if (declarations.length > 0) {
-      var rule = '.' + newClassName + ' { ' + declarations + ' }';
-      stylesheet.insertRule(rule, stylesheet.cssRules.length);
-    }
-
-    // handle special cases (objects)
-    Object.keys(styles).forEach(function (s) {
-      if (_typeof(styles[s]) === 'object') {
-        var _declarations = buildDeclarations(styles[s]);
-        if (s.startsWith('@media')) {
-          var _rule = s + ' { .' + newClassName + ' { ' + _declarations + ' } }';
-          stylesheet.insertRule(_rule, stylesheet.cssRules.length);
-        } else if (s.startsWith(':')) {
-          var _rule2 = '.' + newClassName + s + ' { ' + _declarations + ' }';
-          stylesheet.insertRule(_rule2, stylesheet.cssRules.length);
-        } else if (s.startsWith('@keyframes')) {
-          var _rule3 = s + ' {\n ' + buildKeyframes(styles[s]) + ' \n}';
-          stylesheet.insertRule(_rule3, stylesheet.cssRules.length);
-        } else if (s.startsWith('@font-face')) {
-          var _rule4 = s + ' { ' + buildFontface(styles[s]) + ' }';
-          stylesheet.insertRule(_rule4, stylesheet.cssRules.length);
-        } else {
-          var _rule5 = '.' + newClassName + ' ' + s + ' { ' + _declarations + ' }';
-          stylesheet.insertRule(_rule5, stylesheet.cssRules.length);
-        }
-      }
-    });
-
-    classes[k] = newClassName;
-  });
-
-  return classes;
-};
-
-var vFunction = function vFunction(el, customSheet) {
-  // return cached styles
-  for (var i = 0; i < cache.items.length; i++) {
-    if (deepEqual(cache.items[i].element, el)) {
-      return cache.items[i].classes;
-    }
-  }
-
-  // otherwise create new ones!
-  var cacheItem = {};
-  var classes = buildRuleset(el, customSheet);
-
-  cacheItem.element = el;
-  cacheItem.classes = classes;
-  cache.addItem(cacheItem);
-
-  return classes;
-};
-
-var v = vFunction;
-
-exports.cache = cache;
-exports.sheet = sheet;
-exports.v = v;
-exports['default'] = vFunction;
+"use strict";function createCommonjsModule(e,t){return t={exports:{}},e(t,t.exports),t.exports}function hyphenateStyleName(e){return e.replace(uppercasePattern,"-$&").toLowerCase().replace(msPattern,"-ms-")}function setupGridValues(e){for(var t=[],n=1;n<e+1;n++)t.push((n/e*100).toFixed(2)+"%");return t}function createColumns(e){var t={};return e.forEach(function(e,n){return t["col"+(n+1)]={width:e}}),t}function addBreakpoints(e,t,n){Object.keys(breakpoints).forEach(function(r){for(var i=0;i<t;i++){var o={};o[breakpoints[r]]={width:n[i]},e[r+"Col"+(i+1)]=o}})}Object.defineProperty(exports,"__esModule",{value:!0});var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol?"symbol":typeof e},classCallCheck=function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")},createClass=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),get=function e(t,n,r){null===t&&(t=Function.prototype);var i=Object.getOwnPropertyDescriptor(t,n);if(void 0===i){var o=Object.getPrototypeOf(t);return null===o?void 0:e(o,n,r)}if("value"in i)return i.value;var a=i.get;if(void 0!==a)return a.call(r)},set=function e(t,n,r,i){var o=Object.getOwnPropertyDescriptor(t,n);if(void 0===o){var a=Object.getPrototypeOf(t);null!==a&&e(a,n,r,i)}else if("value"in o&&o.writable)o.value=r;else{var l=o.set;void 0!==l&&l.call(i,r)}return r},camelToHyphen=function(e){return e.replace(/([a-z])([A-Z])/g,"$1-$2").toLowerCase()},guid=function(){return Math.random().toString(26).substring(2,10)+Math.random().toString(26).substring(2,10)},createSheet=function(e){var t=document.getElementById(e);if(t)return t.sheet;var n=document.createElement("style");return n.appendChild(document.createTextNode("")),n.setAttribute("id",e),document.head.appendChild(n),n.sheet},deepEqual=function e(t,n){function r(r){var i=void 0,o=void 0;for(i in r)if(r.hasOwnProperty(i)&&(o=e(t[i],n[i])),!o)break;return o}var i="object"===("undefined"==typeof t?"undefined":_typeof(t)),o="object"===("undefined"==typeof n?"undefined":_typeof(n)),a=i&&o,l=t===n;return t&&n&&a&&!l&&(l=r(t)&&r(n)),l},prefixProps=createCommonjsModule(function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.default={Webkit:{transform:!0,transformOrigin:!0,transformOriginX:!0,transformOriginY:!0,backfaceVisibility:!0,perspective:!0,perspectiveOrigin:!0,transformStyle:!0,transformOriginZ:!0,animation:!0,animationDelay:!0,animationDirection:!0,animationFillMode:!0,animationDuration:!0,animationIterationCount:!0,animationName:!0,animationPlayState:!0,animationTimingFunction:!0,appearance:!0,userSelect:!0,fontKerning:!0,textEmphasisPosition:!0,textEmphasis:!0,textEmphasisStyle:!0,textEmphasisColor:!0,boxDecorationBreak:!0,clipPath:!0,maskImage:!0,maskMode:!0,maskRepeat:!0,maskPosition:!0,maskClip:!0,maskOrigin:!0,maskSize:!0,maskComposite:!0,mask:!0,maskBorderSource:!0,maskBorderMode:!0,maskBorderSlice:!0,maskBorderWidth:!0,maskBorderOutset:!0,maskBorderRepeat:!0,maskBorder:!0,maskType:!0,textDecorationStyle:!0,textDecorationSkip:!0,textDecorationLine:!0,textDecorationColor:!0,filter:!0,fontFeatureSettings:!0,breakAfter:!0,breakBefore:!0,breakInside:!0,columnCount:!0,columnFill:!0,columnGap:!0,columnRule:!0,columnRuleColor:!0,columnRuleStyle:!0,columnRuleWidth:!0,columns:!0,columnSpan:!0,columnWidth:!0,flex:!0,flexBasis:!0,flexDirection:!0,flexGrow:!0,flexFlow:!0,flexShrink:!0,flexWrap:!0,alignContent:!0,alignItems:!0,alignSelf:!0,justifyContent:!0,order:!0,transition:!0,transitionDelay:!0,transitionDuration:!0,transitionProperty:!0,transitionTimingFunction:!0,backdropFilter:!0,scrollSnapType:!0,scrollSnapPointsX:!0,scrollSnapPointsY:!0,scrollSnapDestination:!0,scrollSnapCoordinate:!0,shapeImageThreshold:!0,shapeImageMargin:!0,shapeImageOutside:!0,hyphens:!0,flowInto:!0,flowFrom:!0,regionFragment:!0,textSizeAdjust:!0},Moz:{appearance:!0,userSelect:!0,boxSizing:!0,textAlignLast:!0,textDecorationStyle:!0,textDecorationSkip:!0,textDecorationLine:!0,textDecorationColor:!0,tabSize:!0,hyphens:!0,fontFeatureSettings:!0,breakAfter:!0,breakBefore:!0,breakInside:!0,columnCount:!0,columnFill:!0,columnGap:!0,columnRule:!0,columnRuleColor:!0,columnRuleStyle:!0,columnRuleWidth:!0,columns:!0,columnSpan:!0,columnWidth:!0},ms:{flex:!0,flexBasis:!1,flexDirection:!0,flexGrow:!1,flexFlow:!0,flexShrink:!1,flexWrap:!0,alignContent:!1,alignItems:!1,alignSelf:!1,justifyContent:!1,order:!1,transform:!0,transformOrigin:!0,transformOriginX:!0,transformOriginY:!0,userSelect:!0,wrapFlow:!0,wrapThrough:!0,wrapMargin:!0,scrollSnapType:!0,scrollSnapPointsX:!0,scrollSnapPointsY:!0,scrollSnapDestination:!0,scrollSnapCoordinate:!0,touchAction:!0,hyphens:!0,flowInto:!0,flowFrom:!0,breakBefore:!0,breakAfter:!0,breakInside:!0,regionFragment:!0,gridTemplateColumns:!0,gridTemplateRows:!0,gridTemplateAreas:!0,gridTemplate:!0,gridAutoColumns:!0,gridAutoRows:!0,gridAutoFlow:!0,grid:!0,gridRowStart:!0,gridColumnStart:!0,gridRowEnd:!0,gridRow:!0,gridColumn:!0,gridColumnEnd:!0,gridColumnGap:!0,gridRowGap:!0,gridArea:!0,gridGap:!0,textSizeAdjust:!0}},e.exports=t.default}),capitalizeString=createCommonjsModule(function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){return e.charAt(0).toUpperCase()+e.slice(1)},e.exports=t.default}),joinPrefixedValue=createCommonjsModule(function(e,t){function n(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=arguments.length<=2||void 0===arguments[2]?function(e,t){return e+t}:arguments[2];return n({},e,["-webkit-","-moz-",""].map(function(e){return r(e,t)}))},e.exports=t.default}),isPrefixedValue=createCommonjsModule(function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){return Array.isArray(e)&&(e=e.join(",")),null!==e.match(/-webkit-|-moz-|-ms-/)},e.exports=t.default}),calc_1=createCommonjsModule(function(e,t){function n(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if("string"==typeof t&&!(0,l.default)(t)&&t.indexOf("calc(")>-1)return(0,o.default)(e,t,function(e,t){return t.replace(/calc\(/g,e+"calc(")})}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var i=joinPrefixedValue,o=n(i),a=isPrefixedValue,l=n(a);e.exports=t.default}),cursor_1=createCommonjsModule(function(e,t){function n(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if("cursor"===e&&a[t])return(0,o.default)(e,t)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var i=joinPrefixedValue,o=n(i),a={"zoom-in":!0,"zoom-out":!0,grab:!0,grabbing:!0};e.exports=t.default}),flex_1=createCommonjsModule(function(e,t){function n(e,t){if("display"===e&&r[t])return{display:["-webkit-box","-moz-box","-ms-"+t+"box","-webkit-"+t,t]}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=n;var r={flex:!0,"inline-flex":!0};e.exports=t.default}),sizing_1=createCommonjsModule(function(e,t){function n(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if(a[e]&&l[t])return(0,o.default)(e,t)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var i=joinPrefixedValue,o=n(i),a={maxHeight:!0,maxWidth:!0,width:!0,height:!0,columnWidth:!0,minWidth:!0,minHeight:!0},l={"min-content":!0,"max-content":!0,"fill-available":!0,"fit-content":!0,"contain-floats":!0};e.exports=t.default}),gradient_1=createCommonjsModule(function(e,t){function n(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if("string"==typeof t&&!(0,l.default)(t)&&null!==t.match(u))return(0,o.default)(e,t)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var i=joinPrefixedValue,o=n(i),a=isPrefixedValue,l=n(a),u=/linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;e.exports=t.default}),uppercasePattern=/[A-Z]/g,msPattern=/^ms-/,index=hyphenateStyleName,transition_1=createCommonjsModule(function(e,t){function n(e){return e&&e.__esModule?e:{default:e}}function r(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function i(e,t){if("string"==typeof t&&p[e]){var n,i=o(t),a=i.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function(e){return null===e.match(/-moz-|-ms-/)}).join(",");return e.indexOf("Webkit")>-1?r({},e,a):(n={},r(n,"Webkit"+(0,s.default)(e),a),r(n,e,i),n)}}function o(e){if((0,f.default)(e))return e;var t=e.split(/,(?![^()]*(?:\([^()]*\))?\))/g);return t.forEach(function(e,n){t[n]=Object.keys(m.default).reduce(function(t,n){var r="-"+n.toLowerCase()+"-";return Object.keys(m.default[n]).forEach(function(n){var i=(0,l.default)(n);e.indexOf(i)>-1&&"order"!==i&&(t=e.replace(i,r+i)+","+t)}),t},e)}),t.join(",")}Object.defineProperty(t,"__esModule",{value:!0}),t.default=i;var a=index,l=n(a),u=capitalizeString,s=n(u),c=isPrefixedValue,f=n(c),d=prefixProps,m=n(d),p={transition:!0,transitionProperty:!0,WebkitTransition:!0,WebkitTransitionProperty:!0};e.exports=t.default}),flexboxIE_1=createCommonjsModule(function(e,t){function n(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function r(e,t){if(o[e])return n({},o[e],i[t]||t)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var i={"space-around":"distribute","space-between":"justify","flex-start":"start","flex-end":"end"},o={alignContent:"msFlexLinePack",alignSelf:"msFlexItemAlign",alignItems:"msFlexAlign",justifyContent:"msFlexPack",order:"msFlexOrder",flexGrow:"msFlexPositive",flexShrink:"msFlexNegative",flexBasis:"msPreferredSize"};e.exports=t.default}),flexboxOld_1=createCommonjsModule(function(e,t){function n(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function r(e,t){return"flexDirection"===e&&"string"==typeof t?{WebkitBoxOrient:t.indexOf("column")>-1?"vertical":"horizontal",WebkitBoxDirection:t.indexOf("reverse")>-1?"reverse":"normal"}:o[e]?n({},o[e],i[t]||t):void 0}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var i={"space-around":"justify","space-between":"justify","flex-start":"start","flex-end":"end","wrap-reverse":"multiple",wrap:"multiple"},o={alignItems:"WebkitBoxAlign",justifyContent:"WebkitBoxPack",flexWrap:"WebkitBoxLines"};e.exports=t.default}),prefixAll_1=createCommonjsModule(function(e,t){function n(e){return e&&e.__esModule?e:{default:e}}function r(e){return Object.keys(e).forEach(function(t){var n=e[t];n instanceof Object&&!Array.isArray(n)?e[t]=r(n):Object.keys(a.default).forEach(function(r){var i=a.default[r];i[t]&&(e[r+(0,u.default)(t)]=n)})}),Object.keys(e).forEach(function(t){[].concat(e[t]).forEach(function(n,r){O.forEach(function(r){return i(e,r(t,n))})})}),e}function i(e){var t=arguments.length<=1||void 0===arguments[1]?{}:arguments[1];Object.keys(t).forEach(function(n){var r=e[n];Array.isArray(r)?[].concat(t[n]).forEach(function(t){var i=r.indexOf(t);i>-1&&e[n].splice(i,1),e[n].push(t)}):e[n]=t[n]})}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var o=prefixProps,a=n(o),l=capitalizeString,u=n(l),s=calc_1,c=n(s),f=cursor_1,d=n(f),m=flex_1,p=n(m),g=sizing_1,b=n(g),h=gradient_1,y=n(h),x=transition_1,v=n(x),k=flexboxIE_1,j=n(k),C=flexboxOld_1,S=n(C),O=[c.default,d.default,b.default,y.default,v.default,j.default,S.default,p.default];e.exports=t.default}),_static=prefixAll_1,defaultColors={white:"#ffffff",navy:"#001f3f",blue:"#0074D9",aqua:"#7FDBFF",teal:"#39CCCC",olive:"#3D9970",green:"#2ECC40",lime:"#01FF70",yellow:"#FFDC00",orange:"#FF851B",red:"#FF4136",maroon:"#85144b",fuchsia:"#F012BE",purple:"#B10DC9",black:"#111111",gray:"#AAAAAA",silver:"#DDDDDD"},buildColors=function(e){var t={},n=e?Object.assign({},defaultColors,e.colors):defaultColors,r=function(e){return e.charAt(0).toUpperCase()+e.slice(1)};return Object.keys(n).forEach(function(e){t[e]={color:n[e]},t["bg"+r(e)]={backgroundColor:n[e]},t["border"+r(e)]={borderColor:n[e]},t["stroke"+r(e)]={stroke:n[e]},t["fill"+r(e)]={fill:n[e]}}),t},defaultScale=[0,.5,1,1.5,2,4,8],buildWhitespace=function(e){var t=0,n={},r=e&&e.scale?e.scale:defaultScale;for(r=r.map(function(e){return e+"rem"});t<r.length;)n["p"+t]={padding:r[t]},n["pt"+t]={paddingTop:r[t]},n["pb"+t]={paddingBottom:r[t]},n["pl"+t]={paddingLeft:r[t]},n["pr"+t]={paddingRight:r[t]},n["px"+t]={paddingRight:r[t],paddingLeft:r[t]},n["py"+t]={paddingTop:r[t],paddingBottom:r[t]},n["m"+t]={margin:r[t]},n["mt"+t]={marginTop:r[t]},n["mb"+t]={marginBottom:r[t]},n["ml"+t]={marginLeft:r[t]},n["mr"+t]={marginRight:r[t]},n["mx"+t]={marginRight:r[t],marginLeft:r[t]},n["my"+t]={marginTop:r[t],marginBottom:r[t]},t>0&&(n["mxn"+t]={marginRight:"-"+r[t],marginLeft:"-"+r[t]}),t++;return n.mlAuto={marginLeft:"auto"},n.mrAuto={marginRight:"auto"},n.mxAuto={marginRight:"auto",marginLeft:"auto"},n},buildTypography=function(){var e={};return e.h0={fontSize:"4rem"},e.h1={fontSize:"2rem"},e.h2={fontSize:"1.5rem"},e.h3={fontSize:"1.25rem"},e.h4={fontSize:"1rem"},e.h5={fontSize:"0.875rem"},e.h6={fontSize:"0.75rem"},e.bold={fontWeight:"bold"},e.normal={fontWeight:"normal"},e.italic={fontStyle:"italic"},e.caps={textTransform:"uppercase"},e.center={textAlign:"center"},e.leftAlign={textAlign:"left"},e.rightAlign={textAlign:"right"},e.justify={textAlign:"justify"},e.noWrap={whiteSpace:"nowrap"},e.underline={textDecoration:"underline"},e.noUnderline={textDecoration:"none"},e.trackedOut={letterSpacing:"0.1em"},e.listReset={listStyle:"none",paddingLeft:"0px"},e},buildPositioning=function(){var e={};return e.fixed={position:"fixed",willChange:"transform"},e.relative={position:"relative"},e.absolute={position:"absolute"},e.top0={top:0},e.left0={left:0},e.bottom0={bottom:0},e.right0={right:0},e.z1={zIndex:1},e.z2={zIndex:2},e.z3={zIndex:3},e.z4={zIndex:4},e},buildLayout=function(){var e={};return e.table={display:"table",width:"100%"},e["table-cell"]={display:"table-cell",verticalAlign:"middle"},e["table-row"]={display:"table-row"},e.inline={display:"inline"},e.block={display:"block"},e.inlineBlock={display:"inline-block"},e.alignTop={verticalAlign:"top"},e.alignMiddle={verticalAlign:"middle"},e.alignBottom={verticalAlign:"bottom"},e.alignBaseline={verticalAlign:"baseline"},e.overflowHidden={overflow:"hidden"},e.overflowAuto={overflow:"auto"},e.overflowScroll={overflow:"scroll"},e.right={float:"right"},e.left={float:"left"},e.clearfix={":before":{content:'" "',display:"table"},":after":{content:'" "',display:"table",clear:"both"}},e},breakpoints={sm:"@media (min-width: 40em)",md:"@media (min-width: 52em)",lg:"@media (min-width: 64em)",xl:"@media (min-width: 76em)",xx:"@media (min-width: 88em)"},buildGrid=function(e){var t=e&&e.columns?e.columns:12,n=setupGridValues(t),r=createColumns(n);return addBreakpoints(r,t,n),r},buildExtends=function(e){return Object.assign({},buildColors(e),buildWhitespace(e),buildGrid(e),buildPositioning(),buildTypography(),buildLayout())},atomicClasses=buildExtends(),setupExtends=buildExtends,Cache=function(){function e(){classCallCheck(this,e),this.items=[]}return createClass(e,[{key:"addItem",value:function(e){this.items.push(e)}},{key:"clearItems",value:function(){this.items=[]}}]),e}(),prefix=function(e,t){var n="";return t.forEach(function(t){return n=n.concat(camelToHyphen(e)+": "+t+";")}),n},buildDeclarations=function(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],t="";return Object.keys(e).forEach(function(n){if(!n.startsWith("@")){if("object"!==_typeof(e[n])){var r=/[A-Z]/.test(n[0]),i=r?"-"+camelToHyphen(n):camelToHyphen(n),o=i+": "+e[n]+";";t=t.concat(o)}Array.isArray(e[n])&&(t=t.concat(prefix(n,e[n])))}}),t},buildFontface=function(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],t="";return Object.keys(e).forEach(function(n){Array.isArray(e[n])?!function(){var r="src: ";e[n].forEach(function(t,i){if("embedded-opentype"===t.format){var o="url("+t.path+"?#iefix) format('"+t.format+"'),";r="src: url("+t.path+"); "+r,r=r.concat(o)}else{var a=i<e[n].length-1?",":"",l="url("+t.path+") format('"+t.format+"')"+a;r=r.concat(l)}}),r=r.concat(";"),t=t.concat(r)}():t=t.concat(camelToHyphen(n)+": "+e[n]+";")}),t},buildKeyframes=function(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],t="";return Object.keys(e).forEach(function(n){var r=buildDeclarations(e[n]);t=t.concat(n+" { "+r+" }\n")}),t},parseComposes=function(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];if(e.hasOwnProperty("@composes")){var t=function(){var t={},n={};return e["@composes"].forEach(function(e,r){Object.keys(e).forEach(function(r){"object"===_typeof(e[r])?Object.assign(n,e):Object.assign(t,e)})}),{v:{baseAtomics:t,specialAtomics:n}}}();if("object"===("undefined"==typeof t?"undefined":_typeof(t)))return t.v}},addToSheet=function e(t,n,r,i){var o=_static(t),a=buildDeclarations(o),l=parseComposes(o)||{},u=Object.keys(l).length>0,s=u?buildDeclarations(l.baseAtomics)+" "+a:""+a;if(s.length>0&&i){var c="."+n+" { "+s+" }";r.insertRule(c,r.cssRules.length)}Object.keys(t).forEach(function(e){if("object"===_typeof(t[e])){var i=_static(t[e]),o=buildDeclarations(i),a=parseComposes(i)||{},l=Object.keys(a).length>0?buildDeclarations(a.baseAtomics)+" "+o:""+o;if(e.startsWith("@keyframes")){var u=e+" { "+buildKeyframes(t[e])+" }";r.insertRule(u,r.cssRules.length)}else if(e.startsWith("@font-face")){var s=e+" { "+buildFontface(t[e])+" }";r.insertRule(s,r.cssRules.length)}else if(e.startsWith("@media")){if(l.length>0){var c=e+" { ."+n+" { "+l+" } }";r.insertRule(c,r.cssRules.length)}}else if(e.startsWith(":")){if(l.length>0){var f="."+n+e+" { "+l+" }";r.insertRule(f,r.cssRules.length)}}else if(l.length>0){var d="."+n+" "+e+" { "+l+" }";r.insertRule(d,r.cssRules.length)}}}),u&&e(l.specialAtomics,n,r,!1)},buildRuleset=function(e,t){var n=guid(),r={};return Object.keys(e).forEach(function(i){var o=i+"-"+n,a=e[i];addToSheet(a,o,t,!0),r[i]=o}),r},vFunction=function(e,t){for(var n=t?t:createSheet("vStyleSheet"),r=0;r<cache.items.length;r++)if(deepEqual(cache.items[r].element,e))return cache.items[r].classes;var i={},o=buildRuleset(e,n);return i.element=e,i.classes=o,cache.addItem(i),o},cache=new Cache,atomics=atomicClasses,config=setupExtends,v=vFunction;exports.cache=cache,exports.atomics=atomics,exports.config=config,exports.v=v,exports.default=vFunction;
 
 },{}]},{},[2]);

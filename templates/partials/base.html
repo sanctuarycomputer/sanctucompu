@@ -23,8 +23,14 @@
     <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>
     <!-- endbuild -->
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
   </head>
-  <body>
+  <body {% block body_attributes %}{% endblock %}>
+    
+    {% block body %}
+    {# By default, your inner pages will load into this block. #}
+    {% block content %}{% endblock %}
+
     <div id='app'></div>
 
     <!-- build:js /static/javascript/minified.js -->
