@@ -14,8 +14,12 @@
     <meta name="description" content="{% block description %}{{ site_description|default('The Safest Place on Earth.') }}{% endblock %}">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-    <link rel="apple-touch-icon" href="/static/images/touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/static/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/images/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/static/images/manifest.json">
+    <link rel="mask-icon" href="/static/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
 
@@ -26,7 +30,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
   </head>
   <body {% block body_attributes %}{% endblock %}>
-    
+
     {% block body %}
     {# By default, your inner pages will load into this block. #}
     {% block content %}{% endblock %}
