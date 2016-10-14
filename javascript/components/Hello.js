@@ -18,6 +18,10 @@ const Hero = (props) => {
   const styles = v({
     container: {
       height: '100vh',
+      position: 'fixed',
+      width: '100vw',
+      top: 0,
+      zIndex: 50,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -29,16 +33,21 @@ const Hero = (props) => {
       animationIterationCount: 'infinite',
       animationTimingFunction: 'linear',
       [`@keyframes ${name}`]: {
-        '0%': { 
-          backgroundPosition: '0 0' 
+        '0%': {
+          backgroundPosition: '0 0'
         },
-        '100%': { 
-          backgroundPosition: `0 -${props.imageHeight}px` 
+        '100%': {
+          backgroundPosition: `0 -${props.imageHeight}px`
         }
       },
       'img': {
         width: '20rem'
       }
+    },
+    indent: {
+      display: 'block',
+      height: '0px',
+      textIndent: '-9999px'
     },
     downArrow: {
       left: '50%',
@@ -51,17 +60,26 @@ const Hero = (props) => {
       ]
     }
   });
+
+  const companyName = 'Sanctuary Computer';
+
   return (
-    <div className={styles.container}>
-      <h1><img src='https://img42.com/iZrzL+' /></h1>
-      <div className={styles.downArrow}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" viewBox="0 0 64 25">
-          <g fill="none" fill="#fff">
-            <path d="M32 23.6L31.9 23.7 30.8 22.9 2 4.4 0.9 3.6 2.4 1.3 3.5 2.1 31.9 20.4 60.4 2 61.6 1.3 63.1 3.6 61.9 4.4 33.2 22.9 32 23.7 32 23.6Z"/>
-          </g>
-        </svg>
+    <div className='fade-in one'>
+      <div className={styles.container}>
+        <h1>
+          <img src='https://img42.com/iZrzL+' alt={companyName} itemProp='logo' />
+          <span className={styles.indent} itemProp='name'>{companyName}</span>
+        </h1>
+        <div className={styles.downArrow}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" viewBox="0 0 64 25">
+            <g fill="none" fill="#fff">
+              <path d="M32 23.6L31.9 23.7 30.8 22.9 2 4.4 0.9 3.6 2.4 1.3 3.5 2.1 31.9 20.4 60.4 2 61.6 1.3 63.1 3.6 61.9 4.4 33.2 22.9 32 23.7 32 23.6Z"/>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
+
   );
 };
 
@@ -69,6 +87,10 @@ const Hero = (props) => {
 const Writeup = () => {
   const styles = v({
     writeup: {
+      backgroundColor: 'white',
+      position: 'relative',
+      width: '100vw',
+      zIndex: 99,
       'p': {
         '@composes': [
           a.h1,
@@ -82,7 +104,8 @@ const Writeup = () => {
           a.noUnderline
         ]
       },
-      'span': {
+      'span.heading': {
+        fontSize: 'inherit',
         borderBottom: '1px solid black',
         lineHeight: '1.1',
         top: '-4px',
@@ -104,18 +127,58 @@ const Writeup = () => {
   return (
     <div className={styles.writeup}>
       <div className={styles.padWriteup}>
-        <p>Sanctu Compu makes digital products.</p>
+        <p itemProp='description'>Sanctu Compu makes digital products.</p>
         <p>New website coming soon.</p>
-        <p><span>Selected Collaborators</span><br />Gin Lane, PlayLab, Labour NY, Human NYC</p>
-        <p><span>Selected Clients</span><br />Dig Inn, Hermann Miller and Dame Products</p>
-        <p><span>Technology Stack</span><br />React, React Native, Ember, Phoenix, Elixir, Ruby, Rails, Sass, Greensock and Aframe, among others</p>
-        <p><a href="mailto:hello@sanctuary.computer">hello@sanctuary.computer</a></p>
+        <p>
+          <span className='heading'>Selected Collaborators</span>
+          <br />
+          <a href='http://ginlane.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Gin Lane</span>
+          </a>
+          {', '}
+          <a href='http://playlab.org/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>PlayLab</span>
+          </a>
+          {', '}
+          <a href='http://labour-ny.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Labour NY</span>
+          </a>
+          {', '}
+          <a href='http://human-nyc.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Human NYC</span>
+          </a>
+        </p>
+        <p>
+          <span className='heading'>Selected Clients</span>
+          <br />
+          <a href='https://www.diginn.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Dig Inn</span>
+          </a>
+          {', '}
+          <a href='http://www.hermanmiller.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Herman Miller</span>
+          </a>
+          {' and '}
+          <a href='https://www.dameproducts.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Dame Products</span>  
+          </a>
+        </p>
+        <p>
+          <span className='heading'>Technology Stack</span>
+          <br />React, React Native, Ember, Phoenix, Elixir, Ruby, Rails, Sass, Greensock and Aframe, among others
+        </p>
+        <p><a href="mailto:hello@sanctuary.computer" itemProp='email'>hello@sanctuary.computer</a></p>
         <p>
           <a href="https://www.facebook.com/sanctucompu/" target="_blank">Facebook</a><br />
           <a href="https://twitter.com/sanctucompu" target="_blank">Twitter</a><br />
           <a href="https://www.instagram.com/sanctucompu/" target="_blank">Instagram</a>
         </p>
-        <p>110 Bowery St, Fourth Floor<br />New York City 10013</p>
+        <p itemProp='location' itemScope itemType='http://schema.org/PostalAddress'>
+          <span itemProp='streetAddress'>110 Bowery St, Fourth Floor</span>
+          <br />
+          <span itemProp='addressLocality'>New York City</span>
+          <span itemProp='postalCode'>10013</span>
+        </p>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1280 172">
         <g fill="none" stroke="#000">
@@ -147,11 +210,12 @@ export default class Hello extends Component {
   render() {
     const styles = v({
       siteWrapper: {
-        fontFamily: '"AustinNewsLight", "Helvetica Neue", Helvetica'
+        fontFamily: '"AustinNewsLight", "Helvetica Neue", Helvetica',
+        marginTop: '100vh',
       }
     });
     return (
-      <div className={styles.siteWrapper}>
+      <div itemScope itemType='http://schema.org/LocalBusiness' className={styles.siteWrapper}>
         <Hero image={this.image} imageHeight={this.state.imageHeight} />
         <Writeup />
       </div>
