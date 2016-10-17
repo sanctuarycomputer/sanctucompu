@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { v, atomics as a } from 'vudu';
-
+import smoothScroll from 'smoothscroll';
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
@@ -12,6 +12,10 @@ function loadImage(src) {
   });
 }
 
+function showWriteup(e) {
+  e.preventDefault();
+  smoothScroll(window.innerHeight, 1000);
+}
 
 const Hero = (props) => {
   const name = 'slowPan';
@@ -53,6 +57,7 @@ const Hero = (props) => {
       left: '50%',
       opacity: '.5',
       transform: 'translateX(-50%)',
+      cursor: 'pointer',
       '@composes': [
         a.absolute,
         a.bottom0,
@@ -66,12 +71,12 @@ const Hero = (props) => {
   return (
     <div className='fade-in one'>
       <div className={styles.container}>
-        <h1>
+        <h1 className='fade-in two'>
           <img src='https://img42.com/iZrzL+' alt={companyName} itemProp='logo' />
           <span className={styles.indent} itemProp='name'>{companyName}</span>
         </h1>
-        <div className={styles.downArrow}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" viewBox="0 0 64 25">
+        <div onClick={showWriteup} className={styles.downArrow}>
+          <svg className='fade-in four' xmlns="http://www.w3.org/2000/svg" width="48" viewBox="0 0 64 25">
             <g fill="none" fill="#fff">
               <path d="M32 23.6L31.9 23.7 30.8 22.9 2 4.4 0.9 3.6 2.4 1.3 3.5 2.1 31.9 20.4 60.4 2 61.6 1.3 63.1 3.6 61.9 4.4 33.2 22.9 32 23.7 32 23.6Z"/>
             </g>
@@ -83,6 +88,7 @@ const Hero = (props) => {
   );
 };
 
+const softBlack = '#141414';
 
 const Writeup = () => {
   const styles = v({
@@ -92,6 +98,8 @@ const Writeup = () => {
       width: '100vw',
       zIndex: 99,
       'p': {
+        color: softBlack,
+        lineHeight: '2.75rem',
         '@composes': [
           a.h1,
           a.m0,
@@ -99,14 +107,18 @@ const Writeup = () => {
         ]
       },
       'a': {
+        transition: '300ms color',
         '@composes': [
           a.black,
           a.noUnderline
         ]
       },
+      'a:hover': {
+        color: '#173963'
+      },
       'span.heading': {
         fontSize: 'inherit',
-        borderBottom: '1px solid black',
+        borderBottom: `1px solid ${softBlack}`,
         lineHeight: '1.1',
         top: '-4px',
         '@composes': [
@@ -119,6 +131,7 @@ const Writeup = () => {
       ]
     },
     padWriteup: {
+      maxWidth: '700px',
       '@composes': [
         a.p4
       ]
@@ -127,8 +140,8 @@ const Writeup = () => {
   return (
     <div className={styles.writeup}>
       <div className={styles.padWriteup}>
-        <p itemProp='description'>Sanctu Compu makes digital products.</p>
-        <p>New website coming soon.</p>
+        <p itemProp='description'>Sanctuary Computer is an artful user interface studio, based on the Bowery in Chinatown, Manhattan.</p>
+        <p>We work with established companies, city entities and startups to build compelling and empathetic digital products in the art, music & social infrastructure spaces.</p>
         <p>
           <span className='heading'>Selected Collaborators</span>
           <br />
@@ -160,24 +173,26 @@ const Writeup = () => {
           </a>
           {' and '}
           <a href='https://www.dameproducts.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
-            <span itemProp='name'>Dame Products</span>  
+            <span itemProp='name'>Dame Products</span>
           </a>
         </p>
         <p>
           <span className='heading'>Technology Stack</span>
           <br />React, React Native, Ember, Phoenix, Elixir, Ruby, Rails, Sass, Greensock and Aframe, among others
         </p>
-        <p><a href="mailto:hello@sanctuary.computer" itemProp='email'>hello@sanctuary.computer</a></p>
+        <p><a href="mailto:hello@sanctuary.computer" itemProp='email' target='_blank'>hello@sanctuary.computer</a></p>
         <p>
           <a href="https://www.facebook.com/sanctucompu/" target="_blank">Facebook</a><br />
           <a href="https://twitter.com/sanctucompu" target="_blank">Twitter</a><br />
           <a href="https://www.instagram.com/sanctucompu/" target="_blank">Instagram</a>
         </p>
         <p itemProp='location' itemScope itemType='http://schema.org/PostalAddress'>
-          <span itemProp='streetAddress'>110 Bowery St, Fourth Floor</span>
-          <br />
-          <span itemProp='addressLocality'>New York City</span>
-          <span itemProp='postalCode'>10013</span>
+          <a href="https://www.google.com/maps/place/Sanctuary+Computer/@40.71811,-73.995313,15z/data=!4m5!3m4!1s0x0:0xcdc06390643521f5!8m2!3d40.71811!4d-73.995313" target="_blank">
+            <span itemProp='streetAddress'>110 Bowery, Fourth Floor</span>
+            <br />
+            <span itemProp='addressLocality'>New York City</span>
+            <span itemProp='postalCode'> 10013</span>
+          </a>
         </p>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1280 172">
@@ -210,7 +225,7 @@ export default class Hello extends Component {
   render() {
     const styles = v({
       siteWrapper: {
-        fontFamily: '"AustinNewsLight", "Helvetica Neue", Helvetica',
+        fontFamily: '"AustinNewsLight", "Georgia", serif',
         marginTop: '100vh',
       }
     });
