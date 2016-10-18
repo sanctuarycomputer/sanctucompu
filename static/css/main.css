@@ -2,6 +2,17 @@ body {
   background-color: #173963;
 }
 
+p {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 48em) {
+  p {
+    font-size: 2rem;
+  }  
+}
+
+
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

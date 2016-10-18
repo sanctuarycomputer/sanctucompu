@@ -72,7 +72,7 @@ const Hero = (props) => {
     <div className='fade-in one'>
       <div className={styles.container}>
         <h1 className='fade-in two'>
-          <img src='https://img42.com/iZrzL+' alt={companyName} itemProp='logo' />
+          <img src='/static/images/logo.png' alt={companyName} itemProp='logo' />
           <span className={styles.indent} itemProp='name'>{companyName}</span>
         </h1>
         <div onClick={showWriteup} className={styles.downArrow}>
@@ -99,9 +99,8 @@ const Writeup = () => {
       zIndex: 99,
       'p': {
         color: softBlack,
-        lineHeight: '2.75rem',
+        lineHeight: '1.3',
         '@composes': [
-          a.h1,
           a.m0,
           a.py3
         ]
@@ -208,7 +207,7 @@ export default class Hello extends Component {
 
   constructor(props) {
     super(props);
-    this.image = 'https://img42.com/qfSiP+';
+    this.image = '/static/images/bg.jpg';
     this.state = {
       imageHeight: null
     };
