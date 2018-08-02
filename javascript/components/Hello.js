@@ -17,6 +17,48 @@ function showWriteup(e) {
   smoothScroll(window.innerHeight, 1000);
 }
 
+const flagStyles = v({
+  flag: {
+    transition: '150ms ease-in-out',
+    position: 'fixed',
+    top: '20px',
+    backgroundColor: 'white',
+    margin: 0,
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    width: 'inherit',
+
+    right: '20px',
+    padding: '8px 20px 11px 20px',
+    zIndex: 100,
+    cursor: 'pointer',
+    color: 'black',
+    boxShadow: '0 0 20px 6px #00000014',
+
+    width: 'calc(100% - 40px)',
+    '@media only screen and (min-width: 500px)': {
+      width: 'inherit'
+    },
+
+    ':hover': {
+      color: 'white',
+      backgroundColor: '#173963',
+    }
+  },
+});
+
+const Flag = () => {
+  return (
+    <a
+      href="https://medium.com/sanctuary-computer-inc/were-hiring-a-full-stack-developer-23a8719bf55a"
+      target="_blank">
+      <div className={flagStyles.flag}>
+        <span>{`👋 We're hiring a full-stack developer!`}</span>
+      </div>
+    </a>
+  );
+}
+
 const Hero = (props) => {
   const name = 'slowPan';
   const styles = v({
@@ -148,12 +190,12 @@ const Writeup = () => {
             <span itemProp='name'>Gin Lane</span>
           </a>
           {', '}
-          <a href='http://playlab.org/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
-            <span itemProp='name'>PlayLab</span>
+          <a href='http://www.roandcostudio.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>RoAndCo</span>
           </a>
           {', '}
-          <a href='http://labour-ny.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
-            <span itemProp='name'>Labour NY</span>
+          <a href='http://playlab.org/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>PlayLab</span>
           </a>
           {', '}
           <a href='http://human-nyc.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
@@ -163,16 +205,20 @@ const Writeup = () => {
         <p>
           <span className='heading'>Selected Clients</span>
           <br />
+          <a href='https://ge.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>General Electric</span>
+          </a>
+          {', '}
+          <a href='https://adobe.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
+            <span itemProp='name'>Adobe</span>
+          </a>
+          {', '}
           <a href='https://www.diginn.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
             <span itemProp='name'>Dig Inn</span>
           </a>
           {', '}
           <a href='http://www.hermanmiller.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
             <span itemProp='name'>Herman Miller</span>
-          </a>
-          {' and '}
-          <a href='https://www.dameproducts.com/' target='_blank' itemProp='brand' itemScope itemType='http://schema.org/Organization'>
-            <span itemProp='name'>Dame Products</span>
           </a>
         </p>
         <p>
@@ -230,6 +276,7 @@ export default class Hello extends Component {
     });
     return (
       <div itemScope itemType='http://schema.org/LocalBusiness' className={styles.siteWrapper}>
+        <Flag />
         <Hero image={this.image} imageHeight={this.state.imageHeight} />
         <Writeup />
       </div>
